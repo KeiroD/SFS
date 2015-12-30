@@ -1,9 +1,7 @@
 # SFS
 A StopForumSpam port to ElkArte. As this is the Master branch, we will be providing new ElkArte modules in the form of Releases.
 
-[![Build Status](http://img.shields.io/travis/elkarte/Elkarte/master.svg?style=flat)](https://travis-ci.org/elkarte/Elkarte)
-[![Open Issues](http://img.shields.io/github/issues/elkarte/Elkarte.svg?style=flat)](https://github.com/elkarte/Elkarte/issues)
-[![Current Release](https://img.shields.io/github/release/elkarte/ElkArte.svg?style=flat)](https://github.com/elkarte/ElkArte/releases)
+[![Open Issues](https://img.shields.io/github/issues/KeiroD/SFS.svg)](https://github.com/KeiroD/SFS/issues)
 [![License](http://img.shields.io/badge/License-BSD-green.svg?style=flat)](http://opensource.org/licenses/BSD-3-Clause)
 
 
@@ -15,8 +13,8 @@ Pull Requests are accepted here.
 
 ## Contributing:
 
-* Troubleshoot issues you run into on the [ElkAte community forum](http://www.elkarte.net) so others can help & the developers can reference it later.
-* File detailed issues on GitHub (what you did, and what teh actual vs expected outcomes are).
+* Troubleshoot issues you run into on the [ElkAte Community Forum](http://www.elkarte.net/community/index.php?topic=3183.0) so others can help & the developers (that is, me!) can reference it later.
+* File detailed issues on [GitHub](https://github.com/Keiro/SFS/issues) e.g., what you did, and what teh actual vs expected outcomes are.
 * Read the [Developer's Certificate of Origin](https://github.com/elkarte/Elkarte/blob/master/DCO.txt) if you want to send us code. It means you acknowledge that you can and do license your submissions under the license of the project.
 * Feel free to fork this repository and make your desired changes.
 
