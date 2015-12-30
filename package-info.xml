@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<id>Mino:StopForumSpam</id>
+	<name>Stop Forum Spam</name>
+	<version>1.0</version>
+	<type>modification</type>
+	<install for="1.1.*">
+		<readme>Readme.txt</readme>
+		<modification>StopForumSpam.xml</modification>
+		<require-file name="SFS.arabic-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.arabic.php" destination="$languagedir" />
+		<require-file name="SFS.croatian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.croatian.php" destination="$languagedir" />
+		<require-file name="SFS.english-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.english.php" destination="$languagedir" />
+		<require-file name="SFS.french-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.french.php" destination="$languagedir" />
+		<require-file name="SFS.german-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.german.php" destination="$languagedir" />
+		<require-file name="SFS.greek-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.greek.php" destination="$languagedir" />
+		<require-file name="SFS.italian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.italian.php" destination="$languagedir" />
+		<require-file name="SFS.portuguese_pt-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.portuguese_pt.php" destination="$languagedir" />
+		<require-file name="SFS.russian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.russian.php" destination="$languagedir" />
+		<require-file name="SFS.turkish-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.turkish.php" destination="$languagedir" />
+		<require-file name="SFS.ukrainian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.ukrainian.php" destination="$languagedir" />
+		<require-file name="SFS.hungarian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.hungarian.php" destination="$languagedir" />
+		<require-file name="sfs_icon.png" destination="$themedir/images" />
+		<!--// Finally redirect to our configuration page //-->
+		<redirect url="?action=regcenter;sa=settings">redirect.txt</redirect>
+	</install>
+	<uninstall for="1.1.*">
+		<modification reverse="true">StopForumSpam.xml</modification>
+		<remove-file name="$languagedir/SFS.arabic-utf8.php" />
+		<remove-file name="$languagedir/SFS.arabic.php" />
+		<remove-file name="$languagedir/SFS.croatian-utf8.php" />
+		<remove-file name="$languagedir/SFS.croatian.php" />
+		<remove-file name="$languagedir/SFS.english-utf8.php" />
+		<remove-file name="$languagedir/SFS.english.php" />
+		<remove-file name="$languagedir/SFS.french-utf8.php" />
+		<remove-file name="$languagedir/SFS.french.php" />
+		<remove-file name="$languagedir/SFS.german-utf8.php" />
+		<remove-file name="$languagedir/SFS.german.php" />
+		<remove-file name="$languagedir/SFS.greek-utf8.php" />
+		<remove-file name="$languagedir/SFS.greek.php" />
+		<remove-file name="$languagedir/SFS.italian-utf8.php" />
+		<remove-file name="$languagedir/SFS.italian.php" />
+		<remove-file name="$languagedir/SFS.portuguese_pt-utf8.php" />
+		<remove-file name="$languagedir/SFS.portuguese_pt.php" />
+		<remove-file name="$languagedir/SFS.russian-utf8.php" />
+		<remove-file name="$languagedir/SFS.russian.php" />
+		<remove-file name="$languagedir/SFS.turkish-utf8.php" />
+		<remove-file name="$languagedir/SFS.turkish.php" />
+		<remove-file name="$languagedir/SFS.ukrainian-utf8.php" />
+		<remove-file name="$languagedir/SFS.ukrainian.php" />
+		<remove-file name="$languagedir/SFS.hungarian-utf8.php" />
+		<remove-file name="$languagedir/SFS.hungarian.php" />
+		<remove-file name="$languagedir/sfs_icon.png" />
+	</uninstall>
+  
+  	<!--// Install for SMF 2.x //-->
+	<install for="2.0 - 2.99.99">
+		<readme>Readme.txt</readme>
+		<modification>StopForumSpam2.xml</modification>
+		<require-file name="SFS.arabic-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.arabic.php" destination="$languagedir" />
+		<require-file name="SFS.croatian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.croatian.php" destination="$languagedir" />
+		<require-file name="SFS.english-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.english.php" destination="$languagedir" />
+		<require-file name="SFS.french-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.french.php" destination="$languagedir" />
+		<require-file name="SFS.german-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.german.php" destination="$languagedir" />
+		<require-file name="SFS.greek-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.greek.php" destination="$languagedir" />
+		<require-file name="SFS.italian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.italian.php" destination="$languagedir" />
+		<require-file name="SFS.portuguese_pt-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.portuguese_pt.php" destination="$languagedir" />
+		<require-file name="SFS.russian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.russian.php" destination="$languagedir" />
+		<require-file name="SFS.turkish-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.turkish.php" destination="$languagedir" />
+		<require-file name="SFS.ukrainian-utf8.php" destination="$languagedir" />
+		<require-file name="SFS.ukrainian.php" destination="$languagedir" />
+		<require-file name="sfs_icon.png" destination="$themedir/images" />
+		<redirect url="?action=admin;area=regcenter;sa=settings;">redirect.txt</redirect>
+	</install>
+		<uninstall for="2.*">
+		<modification reverse="true">StopForumSpam2.xml</modification>
+		<remove-file name="$languagedir/SFS.arabic-utf8.php" />
+		<remove-file name="$languagedir/SFS.arabic.php" />
+		<remove-file name="$languagedir/SFS.croatian-utf8.php" />
+		<remove-file name="$languagedir/SFS.croatian.php" />
+		<remove-file name="$languagedir/SFS.english-utf8.php" />
+		<remove-file name="$languagedir/SFS.english.php" />
+		<remove-file name="$languagedir/SFS.french-utf8.php" />
+		<remove-file name="$languagedir/SFS.french.php" />
+		<remove-file name="$languagedir/SFS.german-utf8.php" />
+		<remove-file name="$languagedir/SFS.german.php" />
+		<remove-file name="$languagedir/SFS.greek-utf8.php" />
+		<remove-file name="$languagedir/SFS.greek.php" />
+		<remove-file name="$languagedir/SFS.italian-utf8.php" />
+		<remove-file name="$languagedir/SFS.italian.php" />
+		<remove-file name="$languagedir/SFS.portuguese_pt-utf8.php" />
+		<remove-file name="$languagedir/SFS.portuguese_pt.php" />
+		<remove-file name="$languagedir/SFS.russian-utf8.php" />
+		<remove-file name="$languagedir/SFS.russian.php" />
+		<remove-file name="$languagedir/SFS.turkish-utf8.php" />
+		<remove-file name="$languagedir/SFS.turkish.php" />
+		<remove-file name="$languagedir/SFS.ukrainian-utf8.php" />
+		<remove-file name="$languagedir/SFS.ukrainian.php" />
+		<remove-file name="$languagedir/sfs_icon.png" />
+	</uninstall>
+</package-info>
+

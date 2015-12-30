@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>ITA003:StopForumSpam</id>
+	<version>1.0</version>
+	<file name="$sourcedir/Register.php">
+		<operation>
+			<search position="replace"><![CDATA[	elseif (isset($_SESSION['visual_errors']))
+		unset($_SESSION['visual_errors']);
+]]></search>
+			<add><![CDATA[	elseif (isset($_SESSION['visual_errors']))
+		unset($_SESSION['visual_errors']);
+
+	//Check Forum Spam if enabled
+	if (!empty($modSettings['sfs_enabled'])) {
+		if (SpammerCheck()) {
+			loadLanguage('SFS');
+			fatal_error(sprintf($txt['sfs_spam_detected'],$_POST['user'],$_POST['email'],$user_info['ip']), true);
+		}
+	}
+]]></add>
+		</operation>
+		<operation>
+			<search position="end" />
+			<add><![CDATA[
+function SpammerCheck()
+{
+	global $txt, $boarddir, $context, $settings, $modSettings, $user_info, $sourcedir;
+	
+	$isSpammer=0;
+	$emailSpam=$_POST['email'];
+	$ipSpam=$user_info['ip'];
+	$usernameSpam=$_POST['user'];
+	$response='';
+	$url='http://www.stopforumspam.com/api?email=' . $emailSpam;
+	
+	require_once($sourcedir . '/Subs-Package.php');
+	
+	$response = fetch_web_data($url);
+	
+	//Is Email Spammer??
+	if (strpos($response, "<appears>yes</appears>") > 0) $isSpammer=1;
+	
+	if (!$isSpammer && !empty($modSettings['sfs_ipcheck'])) { //If Not Spammer check the IP
+		//Check IP Spammer
+		$url='http://www.stopforumspam.com/api?ip=' . $ipSpam;
+		
+		$response = fetch_web_data($url);
+
+		//Is IP Spammer??
+		if (strpos($response, "<appears>yes</appears>") > 0) $isSpammer=1;
+	}
+	
+	if (!$isSpammer && !empty($modSettings['sfs_usernamecheck'])) { //If Not Spammer check the username
+		//Check Username Spammer
+		$url='http://www.stopforumspam.com/api?username=' . $usernameSpam;
+		
+		$response = fetch_web_data($url);
+
+		//Is IP Spammer??
+		if (strpos($response, "<appears>yes</appears>") > 0) $isSpammer=1;
+	}
+	
+	return $isSpammer;
+}
+]]></add>
+		</operation>
+	</file>
+		<file name="$sourcedir/ManageRegistration.php">
+		<operation>
+			<search position="before"><![CDATA[	loadLanguage('Login');
+]]></search>
+			<add><![CDATA[	loadLanguage('SFS');
+]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[			'coppaFax' => !empty($_POST['coppaFax']) ? $_POST['coppaFax'] : '',
+			'coppaPhone' => !empty($_POST['coppaPhone']) ? $_POST['coppaPhone'] : '',
+]]></search>
+			<add><![CDATA[
+			'sfs_enabled' => !empty($_POST['sfs_enabled']) ? $_POST['sfs_enabled'] : '',
+			'sfs_ipcheck' => !empty($_POST['sfs_ipcheck']) ? $_POST['sfs_ipcheck'] : '',
+			'sfs_usernamecheck' => !empty($_POST['sfs_usernamecheck']) ? $_POST['sfs_usernamecheck'] : '',
+]]></add>
+		</operation>
+	</file>
+	<file name="$themedir/Register.template.php">
+				<operation>
+			<search position="before"><![CDATA[function template_admin_settings()
+{
+	global $context, $settings, $options, $scripturl, $txt, $modSettings;
+]]></search>
+			<add><![CDATA[
+				echo '<script language="JavaScript" type="text/javascript"><!--
+		function sfsEnableSFS( enabled ) {
+			if (enabled)
+				document.getElementById(\'sfs_enabled\').checked = true;
+		}
+		function sfsEnableCheckIP( enabled ) {
+			if (!enabled)
+				document.getElementById(\'sfs_ipcheck\').checked = false;
+		}
+	//--></script>';
+]]></add>
+		</operation>
+		<operation>
+			<search position="replace"><![CDATA[						</tr><tr class="windowbg2">
+							<td width="100%" colspan="2" align="center">
+								<hr />
+							</td>
+						</tr><tr class="windowbg2" valign="top">
+]]></search>
+			<add><![CDATA[						</tr><tr class="windowbg2">
+							<td width="100%" colspan="2" align="center">
+								<hr />
+							</td>
+						</tr><tr class="windowbg2" valign="top">
+							<th width="50%" align="right">
+								<label for="send_welcomeEmail_check">' . $txt['sfs_txt_sfsenabled'] . '</label> :
+									<br /><span class="smalltext" style="font-weight: normal;">' . $txt['sfs_txt_sfsenabled_desc'] . '</span>
+							</th>
+							<td width="50%" align="left">
+								<input type="checkbox" name="sfs_enabled" id="sfs_enabled"', !empty($modSettings['sfs_enabled']) ? ' checked="checked"' : '', ' class="check" onclick="sfsEnableCheckIP(this.checked);" />
+							</td>
+						</tr><tr class="windowbg2" valign="top">
+							<th width="50%" align="right">
+								<label for="send_welcomeEmail_check">' . $txt['sfs_txt_ipcheck'] . '</label> :
+								<br /><span class="smalltext" style="font-weight: normal;">' . $txt['sfs_txt_ipcheck_desc'] . '</span>
+							</th>
+							<td width="50%" align="left">
+								<input type="checkbox" name="sfs_ipcheck" id="sfs_ipcheck"', !empty($modSettings['sfs_ipcheck']) ? ' checked="checked"' : '', ' class="check" onclick="sfsEnableSFS(this.checked);" />
+							</td>
+						</tr><tr class="windowbg2" valign="top">
+							<th width="50%" align="right">
+								<label for="send_welcomeEmail_check">' . $txt['sfs_txt_usernamecheck'] . '</label> :
+								<br /><span class="smalltext" style="font-weight: normal;">' . $txt['sfs_txt_usernamecheck_desc'] . '</span>
+							</th>
+							<td width="50%" align="left">
+								<input type="checkbox" name="sfs_usernamecheck" id="sfs_ipcheck"', !empty($modSettings['sfs_usernamecheck']) ? ' checked="checked"' : '', ' class="check" onclick="sfsEnableSFS(this.checked);" />
+							</td>
+						</tr><tr class="windowbg2">
+							<td width="100%" colspan="2" align="center">
+								<hr />
+							</td>
+						</tr><tr class="windowbg2" valign="top">
+]]></add>
+		</operation>
+	</file>
+		<file name="$themedir/Who.template.php">
+				<operation>
+			<search position="before"><![CDATA[		if (!$member['is_guest'])
+		{
+			echo '
+				<div style="float: right; width: 14ex;">
+					', $context['can_send_pm'] ? '<a href="' . $member['online']['href'] . '" title="' . $member['online']['label'] . '">' : '', $settings['use_image_buttons'] ? '<img src="' . $member['online']['image_href'] . '" alt="' . $member['online']['text'] . '" align="middle" />' : $member['online']['text'], $context['can_send_pm'] ? '</a>' : '', '
+					', $member['icq']['link'], ' ', $member['msn']['link'], ' ', $member['yim']['link'], ' ', $member['aim']['link'], '
+				</div>';
+		}]]></search>
+			<add><![CDATA[
+
+		if ($member['is_guest'])
+		{
+			echo '
+				<div style="float: right; margin-right: 2px;">
+					<a href="http://www.stopforumspam.com/search?q='. $member['ip'] .'" target="_blank"><img src="' . $settings['theme_url'] . '/../default/images/sfs_icon.png" align="middle" /></a>
+				</div>';
+		}]]></add>
+		</operation>
+	</file>
+</modification>
+

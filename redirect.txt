@@ -1,0 +1,3 @@
+Congratulations! The Stop Forum Spam modification was installed successfully.<br />
+<strong>Enable it to Stop Spam!!</strong><br />
+You will now be taken to the page where the settings for the modification are located.
