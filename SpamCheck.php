@@ -9,7 +9,7 @@ function SpammerCheck()
 	$response='';
 	$url='http://www.stopforumspam.com/api?email=' . $emailSpam;
 	
-	require_once($sourcedir . '/Subs.php');
+	require_once($sourcedir . '/subs/Package.subs.php');
 	
 	$response = fetch_web_data($url);
 	
