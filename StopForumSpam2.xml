@@ -95,7 +95,7 @@ function SpammerCheck()
 ]]></add>
 		</operation>
 	</file>
-			<file name="$themedir/Who.template.php">
+			<file name="$themedir/default/Who.template.php">
 				<operation>
 			<search position="before"><![CDATA[		if (!$member['is_guest'])
 		{
