@@ -32,7 +32,7 @@
 		<require-file name="SFS.ukrainian.php" destination="$languagedir" />
 		<require-file name="SFS.hungarian-utf8.php" destination="$languagedir" />
 		<require-file name="SFS.hungarian.php" destination="$languagedir" />
-		<require-file name="sfs_icon.png" destination="$themedir/images" />
+		<require-file name="sfs_icon.png" destination="theme/default/images" />
 		<!--// Finally redirect to our configuration page //-->
 		<redirect url="?action=regcenter;sa=settings">redirect.txt</redirect>
 	</install>
@@ -65,4 +65,3 @@
 		<remove-file name="$languagedir/sfs_icon.png" />
 	</uninstall>
 </package-info>
-
