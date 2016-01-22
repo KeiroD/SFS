@@ -84,7 +84,7 @@ function SpammerCheck()
 ]]></add>
 		</operation>
 	</file>
-	<file name="/themes/default/Register.template.php">
+	<file name="~/themes/default/Register.template.php">
 				<operation>
 			<search position="before"><![CDATA[function template_admin_settings()
 {
